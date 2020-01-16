@@ -34,15 +34,15 @@ async def on_message(message):
           
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
-        	sheet1.update_acell('A1', SearchID)
-        	result = sheet1.acell('B1').value
+		sheet1.update_acell('A1', SearchID)
+		result = sheet1.acell('B1').value
             
-        	embed = discord.Embed(
+		embed = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
-                        description= '```' + SearchID + ' 오전까지 내역입니다. ' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```',
-		    	color=0xff00ff	
-            		)
-           	await client.send_message(message.channel, embed=embed)
+			description= '```' + SearchID + ' 오전까지 내역입니다. ' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```',
+			color=0xff00ff
+			)
+		await client.send_message(message.channel, embed=embed)
             
 
                         
