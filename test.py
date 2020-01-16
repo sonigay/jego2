@@ -19,11 +19,11 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print("login")
-    print(client.user.name)
-    print(client.user.id)
-    print("----------------")
-    await client.change_presence(game=discord.Game(name='주문재고 전달', type=1))
+	print("login")
+	print(client.user.name)
+	print(client.user.id)
+	print("----------------")
+	await client.change_presence(game=discord.Game(name='재고현황 안내', type=1))
 
 
 
@@ -31,19 +31,19 @@ async def on_ready():
 @client.event
 async def on_message(message):
     
-    if message.content.startswith('!주문'):
-        if message.channel.is_private and message.author.id != "538289410018639893":
-            await client.send_message(discord.utils.get(client.get_all_members(), id="315237238940106754"), message.author.name + "(" + message.author.id + ") : " + message.content[4:] + " 주문이 완료 되었습니다. 부득이 한경우 개인답변 드리도록 하겠습니다.")
-                        
-    if message.content.startswith('!주문'):
-        if message.channel.is_private and message.author.id != "538289410018639893":
-            sheet1.insert_row([message.author.display_name, message.content[4:]], 3)
-            await client.send_message(client.get_channel("661768769131249667"), message.author.display_name + "(" + message.author.id + ") : " + message.content[4:])
-           
+          
+	if message.content.startswith('!재고'):
+		SearchID = message.content[len('!재고')+1:]
+        	sheet1.update_acell('A1', SearchID)
+        	result = sheet1.acell('B1').value
             
-    if message.content.startswith("!답변"):
-            member = discord.utils.get(client.get_all_members(), id=message.content[4:22])
-            await client.send_message(member, "홍팀장 개인답변 : " + message.content[23:])
+        	embed = discord.Embed(
+			title = ' :calling:  ' + SearchID + ' 재고현황! ',
+                        description= '```' + SearchID + ' 오전까지 내역입니다. ' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```',
+		    	color=0xff00ff	
+            		)
+           	await client.send_message(message.channel, embed=embed)
+            
 
                         
 access_token = os.environ["BOT_TOKEN"]
