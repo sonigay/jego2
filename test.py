@@ -47,7 +47,7 @@ async def on_message(message):
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
 		sheet2.update_acell('A1', SearchID)
-		result = sheet1.acell('B1').value
+		result = sheet2.acell('B1').value
 		
 		embed = discord.Embed(
 			title = ' :printer:  모델명 코드 리스트 ',
