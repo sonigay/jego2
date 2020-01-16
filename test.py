@@ -12,7 +12,7 @@ client = gspread.authorize(creds)
 doc = client.open_by_url('https://docs.google.com/spreadsheets/d/15p6G4jXmHw7Z_iRCYeFwRzkzLxqf-3Pj0c6FeVuFYBM/edit#gid=997295719')
 
 sheet1 = doc.worksheet('시트1')
-
+sheet2 = doc.worksheet('시트2')
 
 client = discord.Client()
 
@@ -44,7 +44,17 @@ async def on_message(message):
 			)
 		await client.send_message(message.channel, embed=embed)
             
-
+	if message.content.startswith('!모델명'):
+		SearchID = message.content[len('!모델명')+1:]
+		sheet2.update_acell('A1', SearchID)
+		result = sheet1.acell('B1').value
+		
+		embed = discord.Embed(
+			title = ' :printer:  모델명 코드 리스트 ',
+			description= '```' + SearchID + ' 모델명 코드는 ' + result + ' ```',
+			color=0x0000ff
+			)
+		await client.send_message(message.channel, embed=embed)
                         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
