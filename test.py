@@ -31,12 +31,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+	global gc #정산
+	global creds	#정산
     
           
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
-		sheet1.update_acell('A1', SearchID)
-		result = sheet1.acell('B1').value
+		gc = gspread.authorize(creds)
+		wks = gc.open('오전재고').worksheet('시트1')
+		
+		wks.update_acell('A1', SearchID)
+		result = wks.acell('B1').value
             
 		embed = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
@@ -47,8 +52,10 @@ async def on_message(message):
             
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
-		sheet2.update_acell('A1', SearchID)
-		result = sheet2.acell('B1').value
+		gc = gspread.authorize(creds)
+		wks = gc.open('오전재고').worksheet('시트2')
+		wks.update_acell('A1', SearchID)
+		result = wks.acell('B1').value
 		
 		embed = discord.Embed(
 			title = ' :printer:  모델명 코드 리스트 ',
