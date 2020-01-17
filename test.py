@@ -3,7 +3,6 @@ import asyncio
 import random
 import os
 import datetime
-import re
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -17,9 +16,6 @@ sheet2 = doc.worksheet('시트2')
 
 client = discord.Client()
 
-access_token = os.environ["BOT_TOKEN"]
-git_access_token = os.environ["GIT_TOKEN"]
-client.run(access_token)
 
 
 @client.event
@@ -61,4 +57,6 @@ async def on_message(message):
 			)
 		await client.send_message(message.channel, embed=embed)
                         
-
+access_token = os.environ["BOT_TOKEN"]
+git_access_token = os.environ["GIT_TOKEN"]
+client.run(access_token)
