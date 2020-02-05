@@ -38,7 +38,7 @@ async def on_message(message):
 		SearchID = message.content[len('!재고')+1:]
 		gc = gspread.authorize(creds)
 		wks = gc.open('오전재고').worksheet('시트1')
-		wktime = gc.open('오전재고').worksheet('데이터')
+		wkstime = gc.open('오전재고').worksheet('데이터')
 		
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
