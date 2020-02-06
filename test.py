@@ -44,12 +44,18 @@ async def on_message(message):
 		result = wks.acell('B1').value
 		result2 = wkstime.acell('A1').value
             
-		embed = discord.Embed(
+		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
 			description= '```' + SearchID + ' 재고현황 입니다.\n데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```',
 			color=0xff00ff
 			)
-		await client.send_message(message.channel, embed=embed)
+		embed2 = discord.Embed(
+			title = ' :calling: ' + SearchID + ' 재고조회!! ',
+			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
+		await client.send_message(message.channel, embed=embed1)
+			color=0xff00ff
+			)
+		await client.send_message(client.get_channel("674838122332291082"), embed=embed2)
             
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
