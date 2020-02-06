@@ -52,9 +52,9 @@ async def on_message(message):
 		embed2 = discord.Embed(
 			title = ' :calling: ' + SearchID + ' 재고조회!! ',
 			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
-		await client.send_message(message.channel, embed=embed1)
 			color=0xff00ff
 			)
+		await client.send_message(message.channel, embed=embed1)
 		await client.send_message(client.get_channel("674838122332291082"), embed=embed2)
             
 	if message.content.startswith('!모델명'):
