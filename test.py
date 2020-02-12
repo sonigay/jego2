@@ -46,7 +46,7 @@ async def on_message(message):
             
 		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
-			description= '```' + SearchID + ' 재고현황 입니다.\n마지막 데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```',
+			description= '**```css\n' + SearchID + ' 재고현황 입니다.\n마지막 데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```**',
 			color=0xff00ff
 			)
 		embed2 = discord.Embed(
@@ -66,7 +66,7 @@ async def on_message(message):
 		
 		embed = discord.Embed(
 			title = ' :printer:  모델명 코드 리스트 ',
-			description= '```' + SearchID + ' 모델명 코드는 ' + result + ' ```',
+			description= '**```css\n' + SearchID + ' 모델명 코드는 ' + result + '```**',
 			color=0x0000ff
 			)
 		await client.send_message(message.channel, embed=embed)
