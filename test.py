@@ -37,8 +37,8 @@ async def on_message(message):
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
 		gc = gspread.authorize(creds)
-		wks = gc.open('오전재고').worksheet('시트1')
-		wkstime = gc.open('오전재고').worksheet('데이터')
+		wks = gc.open('재고관리').worksheet('구단위코드/재고출력')
+		wkstime = gc.open('재고관리').worksheet('데이터')
 		
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
@@ -60,7 +60,7 @@ async def on_message(message):
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
 		gc = gspread.authorize(creds)
-		wks = gc.open('오전재고').worksheet('시트2')
+		wks = gc.open('재고관리').worksheet('모델명출력')
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
 		
