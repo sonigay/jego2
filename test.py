@@ -43,7 +43,7 @@ async def on_message(message):
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
 		result2 = wkstime.acell('A1').value
-		result3 = wks.acell('B1').value
+		result3 = wks.acell('c1').value
             
 		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
