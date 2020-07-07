@@ -44,6 +44,7 @@ async def on_message(message):
 		result = wks.acell('B1').value
 		result2 = wkstime.acell('A1').value
 		result3 = wks.acell('c1').value
+		result4 = wks.acell('d1').value		
             
 		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
@@ -52,7 +53,12 @@ async def on_message(message):
 			)
 		embed3 = discord.Embed(
 			title = '',
-			description= '**```css\n' + result3 + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```**',
+			description= '**```css\n' + result3 + '```**',
+			color=0xff00ff
+			)
+		embed4 = discord.Embed(
+			title = '',
+			description= '**```css\n' + result4 + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```**',
 			color=0xff00ff
 			)		
 		embed2 = discord.Embed(
@@ -62,6 +68,7 @@ async def on_message(message):
 			)
 		await client.send_message(message.channel, embed=embed1)
 		await client.send_message(message.channel, embed=embed3)
+		await client.send_message(message.channel, embed=embed4)
 		await client.send_message(client.get_channel("674838122332291082"), embed=embed2)
             
 	if message.content.startswith('!모델명'):
