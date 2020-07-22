@@ -23,7 +23,7 @@ async def on_ready():
 	print(client.user.name)
 	print(client.user.id)
 	print("----------------")
-	await client.change_presence(game=discord.Game(name='재고현황 안내', type=1))
+	await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name="재고현황 ", type=1), afk=False)
 
 
 
@@ -66,10 +66,10 @@ async def on_message(message):
 			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
 			color=0xff00ff
 			)
-		await client.send_message(message.channel, embed=embed1)
-		await client.send_message(message.channel, embed=embed3)
-		await client.send_message(message.channel, embed=embed4)
-		await client.send_message(client.get_channel("674838122332291082"), embed=embed2)
+			await message.channel.send(embed=embed1)
+			await message.channel.send(embed=embed3)
+			await message.channel.send(embed=embed4)
+			await client.get_channel(674838122332291082).send(embed=embed2)
             
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
@@ -83,7 +83,7 @@ async def on_message(message):
 			description= '**```css\n' + SearchID + ' 모델명 코드는 ' + result + '```**',
 			color=0x0000ff
 			)
-		await client.send_message(message.channel, embed=embed)
+		await message.channel.send(embed=embed)
                         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
