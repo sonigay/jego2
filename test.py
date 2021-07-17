@@ -33,7 +33,6 @@ async def on_message(message):
 	global gc #정산
 	global creds	#정산
     
-
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
 		gc = gspread.authorize(creds)
@@ -47,7 +46,6 @@ async def on_message(message):
 		wks = gc.open('재고관리').worksheet('구단위코드/재고출력')
 		wks2 = gc.open('재고관리').worksheet('모델명다양성')
 		wkstime = gc.open('재고관리').worksheet('재고데이터')
-
 		wks.update_acell('A1', SearchID)
 		wks2.update_acell('F2', SearchID)
 		result = wks.acell('B1').value
