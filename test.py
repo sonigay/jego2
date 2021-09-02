@@ -78,7 +78,7 @@ async def on_message(message):
 			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
 			color=0xff00ff
 			)
-		await message.channel.send('```fix\n' + SearchID + '재고현황 출력중...```')
+		await message.channel.send('```fix\n' + SearchID + ' 재고현황 출력중...```')
 		await message.channel.send(embed=embed1)
 		await message.channel.send(embed=embed3)
 		await message.channel.send(embed=embed4)
