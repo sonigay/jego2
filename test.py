@@ -33,10 +33,19 @@ async def on_ready():
 async def on_message(message):
 	global gc #정산
 	global creds	#정산
+	
+	if message.content.startswith('!재고'):
+		embed = discord.Embed(
+			title='',
+			description='```fix\n' + message.author.display_name + '님 안녕하세요!😊\n요청하신 재고 조회중입니다.\n잠시만 기다려주시기 바랍니다...```',
+			color=0xf29886
+			)
+			await message.channel.send(embed=embed)	
     
 
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
+		await message.channel.send("```fix\n재고 선택중...```")
 		gc = gspread.authorize(creds)
 		wks = gc.open('재고관리').worksheet('구단위코드/재고출력')
 
@@ -45,8 +54,9 @@ async def on_message(message):
 		result = wks.acell('B1').value
 		result2 = wkstime.acell('A1').value
 		result3 = wks.acell('c1').value
-		result4 = wks.acell('d1').value		
-            
+		result4 = wks.acell('d1').value
+		
+		await message.channel.send("```fix\n재고 조회중...```")
 		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
 			description= '**```css\n' + SearchID + ' 재고현황 입니다.\n마지막 데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '```**',
@@ -67,6 +77,7 @@ async def on_message(message):
 			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
 			color=0xff00ff
 			)
+		await message.channel.send("```fix\n재고현황 출력중...```")
 		await message.channel.send(embed=embed1)
 		await message.channel.send(embed=embed3)
 		await message.channel.send(embed=embed4)
