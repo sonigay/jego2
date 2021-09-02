@@ -40,7 +40,7 @@ async def on_message(message):
 			description='```fix\n' + message.author.display_name + '님 안녕하세요!😊\n요청하신 재고 조회중입니다.\n잠시만 기다려주시기 바랍니다...```',
 			color=0xf29886
 			)
-			await message.channel.send(embed=embed)	
+		await message.channel.send(embed=embed)	
     
 
 	if message.content.startswith('!재고'):
@@ -51,12 +51,13 @@ async def on_message(message):
 
 		wkstime = gc.open('재고관리').worksheet('재고데이터')
 		wks.update_acell('A1', SearchID)
+		await message.channel.send("```fix\n재고 조회중...```")
 		result = wks.acell('B1').value
 		result2 = wkstime.acell('A1').value
+		await message.channel.send("```fix\n마지막 업로드시간 확인중...```")
 		result3 = wks.acell('c1').value
 		result4 = wks.acell('d1').value
 		
-		await message.channel.send("```fix\n재고 조회중...```")
 		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
 			description= '**```css\n' + SearchID + ' 재고현황 입니다.\n마지막 데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '```**',
