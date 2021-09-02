@@ -45,13 +45,13 @@ async def on_message(message):
 
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
-		await message.channel.send("```fix\n재고 선택중...```")
+		await message.channel.send('```fix\n' + SearchID + ' 재고 선택중...```')
 		gc = gspread.authorize(creds)
 		wks = gc.open('재고관리').worksheet('구단위코드/재고출력')
 
 		wkstime = gc.open('재고관리').worksheet('재고데이터')
 		wks.update_acell('A1', SearchID)
-		await message.channel.send("```fix\n재고 조회중...```")
+		await message.channel.send('```fix\n' + SearchID + ' 재고 조회중...```')
 		result = wks.acell('B1').value
 		result2 = wkstime.acell('A1').value
 		await message.channel.send("```fix\n마지막 업로드시간 확인중...```")
@@ -78,11 +78,19 @@ async def on_message(message):
 			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
 			color=0xff00ff
 			)
-		await message.channel.send("```fix\n재고현황 출력중...```")
+		await message.channel.send('```fix\n' + SearchID + '재고현황 출력중...```')
 		await message.channel.send(embed=embed1)
 		await message.channel.send(embed=embed3)
 		await message.channel.send(embed=embed4)
 		await client.get_channel(674838122332291082).send(embed=embed2)
+		
+	if message.content.startswith('!모델명'):
+		embed = discord.Embed(
+			title='',
+			description='```fix\n' + message.author.display_name + '님 안녕하세요!😊\n요청하신 모델명 조회중입니다.\n잠시만 기다려주시기 바랍니다...```',
+			color=0xf29886
+			)
+		await message.channel.send(embed=embed)	
             
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
