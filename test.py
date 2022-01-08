@@ -36,7 +36,7 @@ async def on_message(message):
 	
 # 재고조회안되는 채널 KR1 / KR2 / KR3 / KR5 / KR6 / KRb / KRd   	
 	if message.content.startswith('!재고'):
-		if message.channel.id == (689426210601959475) and message.channel.id != (689427184443588632) and message.channel.id != (689427209018015842) and message.channel.id != (689427243008655360) and message.channel.id != (689427387859206168) and message.channel.id != (688654225286234146) and message.channel.id != (689426260484423741):
+		if message.channel.id == (689426210601959475) or message.channel.id != (689427184443588632) or message.channel.id != (689427209018015842) or message.channel.id != (689427243008655360) or message.channel.id != (689427387859206168) or message.channel.id != (688654225286234146) or message.channel.id != (689426260484423741):
 			embed = discord.Embed(
 				title='',
 				description='```fix\n' + message.author.display_name + '님 안녕하세요!😊\n해당기능은 점검중입니다.\n오류해결후에 다시 찾아뵙도록 하겠습니다.\n\n그동안은 불편하지만 담당영업사원 문의 부탁드립니다. 감사합니다.```',
